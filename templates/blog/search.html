@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Search Page
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+
+        <div id="colorlib-main">
+            <section class="ftco-section ftco-no-pt ftco-no-pb">
+                <div class="container">
+                    <div class="row d-flex">
+                        <div class="col-xl-8 px-md-5 py-5">
+                            <div class="row pt-md-4">
+                             {% if result %}
+                                 <h4 class="mb-3">Found Data.</h4>
+                                {% for post in result %}
+                                    <div class="col-md-12">
+                                        <div class="blog-entry-2 ftco-animate">
+                                            <a href="{% url 'detail' post.id post.slug %}"><img
+                                                    src="{{ post.image.url }}" alt="{{ post.title }}" class="img"></a>
+
+                                            <div class="text pt-4">
+                                                <h3 class="mb-4"><a
+                                                        href="{% url 'detail' post.id post.slug %}">{{ post.title }}</a>
+                                                </h3>
+                                                <p class="mb-4">{{ post.body|linebreaksbr|slice:":200" }}</p>
+                                                <div class="author mb-4 d-flex align-items-center">
+                                                    <a href="{% url 'single' post.author %}">
+                                                        <img src="/static/blog/images/person_1.jpg" alt="" class="img"></a>
+                                                    <div class="ml-3 info">
+                                                        <span>Written by</span>
+                                                        <h3>
+                                                            <a href="{% url 'single' post.author %}">{{ post.author }}</a>,
+                                                            <span>{{ post.updated_date }}</span></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="meta-wrap d-md-flex align-items-center">
+                                                    <div class="half order-md-last text-md-right">
+                                                        <p class="meta">
+                                                            <span><i class="icon-heart"></i>3</span>
+                                                            <span><i class="icon-eye"></i>100</span>
+                                                            <span><i class="icon-comment"></i>5</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="half">
+                                                        <p><a href="{% url 'detail' post.id post.slug %}"
+                                                              class="btn btn-primary p-3 px-xl-4 py-xl-3">Continue
+                                                            Reading</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr class="py-2"></hr>
+                                    </div>
+                                {% endfor %}
+                             {% else %}
+                                <p>No Found!</p>
+                             {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}

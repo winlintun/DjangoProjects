@@ -1,0 +1,20 @@
+<div class="sidebar-box ftco-animate">
+    <h3 class="sidebar-heading">Last Articles</h3>
+    {% for post in top_post %}
+        <div class="block-21 mb-4 d-flex">
+            <a class="">
+                <img src="{{ post.image.url }}" class="blog-img mr-4">
+            </a>
+            <div class="text">
+                <h3 class="heading"><a href="{% url 'detail' post.id post.slug %}">{{ post.title }}</a></h3>
+                <div class="meta">
+                    <div><span class="icon-calendar"></span>{{ post.updated_date }}</div>
+                    <div><a href="{% url 'single' post.author %}"><span class="icon-person"></span> {{ post.author }}</a></div>
+                    <div><a href="{% url 'detail' post.id post.slug %}"><span class="icon-chat"></span>
+                        {{ post.comment_set.all.count }}
+                    </a></div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

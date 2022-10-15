@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Register
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="colorlib-page">
+        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+
+        <div id="colorlib-main">
+            <section class="ftco-section">
+                <div class="container">
+                    <div class="row px-md-4">
+                        <div class="col-md-12 mb-3">
+                            <h1>Register</h1>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                {{ form.as_p }}
+
+                                <button class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div><!-- END COLORLIB-MAIN -->
+    </div><!-- END COLORLIB-PAGE -->
+
+{% endblock %}
